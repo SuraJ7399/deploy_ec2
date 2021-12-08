@@ -13,7 +13,7 @@ resource "aws_launch_template" "foobar" {
 }
 
 resource "aws_autoscaling_group" "bar" {
-  availability_zones = ["ap-northeast-1"]
+  availability_zones = ["us-east-1a"]
   desired_capacity   = 1
   max_size           = 1
   min_size           = 1
