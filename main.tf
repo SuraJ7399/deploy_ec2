@@ -6,20 +6,46 @@ resource "aws_instance" "example" {
   ami           = "ami-0218d08a1f9dac831"
   instance_type = "t2.micro"
 }
-resource "aws_launch_template" "foobar" {
-  name_prefix   = "foobar"
-  image_id      = "ami-1a2b3c"
-  instance_type = "t2.micro"
-}
+resource "aws_elb" "bar" {
+  name               = "foobar-terraform-elb"
+  availability_zones = ["us-west-2a", "us-west-2b", "us-west-2c"]
 
-resource "aws_autoscaling_group" "bar" {
-  availability_zones = ["us-east-1a"]
-  desired_capacity   = 1
-  max_size           = 1
-  min_size           = 1
+  access_logs {
+    bucket        = "foo"
+    bucket_prefix = "bar"
+    interval      = 60
+  }
 
-  launch_template {
-    id      = aws_launch_template.foobar.id
-    version = "$Latest"
+  listener {
+    instance_port     = 8000
+    instance_protocol = "http"
+    lb_port           = 80
+    lb_protocol       = "http"
+  }
+
+  listener {
+    instance_port      = 8000
+    instance_protocol  = "http"
+    lb_port            = 443
+    lb_protocol        = "https"
+    ssl_certificate_id = "arn:aws:iam::123456789012:server-certificate/certName"
+  }
+
+  health_check {
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
+    timeout             = 3
+    target              = "HTTP:8000/"
+    interval            = 30
+  }
+
+  instances                   = [aws_instance.foo.id]
+  cross_zone_load_balancing   = true
+  idle_timeout                = 400
+  connection_draining         = true
+  connection_draining_timeout = 400
+
+  tags = {
+    Name = "foobar-terraform-elb"
   }
 }
