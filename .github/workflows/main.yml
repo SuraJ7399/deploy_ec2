@@ -31,6 +31,6 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
-        run: main.tf
+        run: sudo apt install awscli -y && wget https://releases.hashicorp.com/terraform/1.0.11/terraform_1.0.11_linux_amd64.zip && unzip *.zip && sudo mv terraform /usr/local/bin && terraform init && terraform apply -auto-approve
 
               
