@@ -22,7 +22,7 @@ resource "aws_instance" "ec2_example" {
       type        = "ssh"
       host        = self.public_ip
       user        = "ubuntu"
-      private_key = file("/c/Users/20323725/Downloads/deploy_key")
+      private_key = file("/home/ec2-user/keyfile")
       timeout     = "4m"
    }
 }
