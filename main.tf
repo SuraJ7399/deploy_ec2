@@ -6,7 +6,7 @@ region = "ap-south-1"
 
 resource "aws_instance" "ubuntu" {
 
-ami = "ami-083654bd07b5da81d"
+ami = "ami-052cef05d01020f1d"
 instance_type = "t2.micro"
 key_name = "PEM"
 
