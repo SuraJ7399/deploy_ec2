@@ -15,6 +15,6 @@ resource "aws_eip" "elastic_ip" {
 instance = aws_instance.ubuntu.id
 }
 
-output "EIP" {
+output "EIP_new" {
 value = aws_eip.elastic_ip.public_ip
 }
