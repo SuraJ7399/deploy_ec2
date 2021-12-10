@@ -12,11 +12,6 @@ key_name = "PEM"
 
 }
 resource "aws_eip" "elastic_ip" {
-
-instance = aws_instance.ubuntu.id
-
-}
- resource "aws_eip" "elastic_ip" {
 instance = aws_instance.ubuntu.id
 }
 
