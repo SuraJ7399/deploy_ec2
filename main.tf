@@ -8,7 +8,7 @@ resource "aws_instance" "ubuntu" {
 
 ami = "ami-052cef05d01020f1d"
 instance_type = "t2.micro"
-key_name = "PEM"
+key_name = "suraj"
 
 }
 resource "aws_eip" "elastic_ip" {
