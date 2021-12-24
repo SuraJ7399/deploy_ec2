@@ -28,8 +28,8 @@ jobs:
       with:
         # scanning two directories: ./terraform/ ./cfn-templates/ plus a single file
         path: 'terraform,cfn-templates,my-other-sub-folder/Dockerfile'
-        output_path: myResults/
+    #   output_path: myResults/
     # Display the results in json format
-    - name: display kics results
-      run: |
-        cat myResults/results.json
+   # - name: display kics results
+    #  run: |
+    #    cat myResults/results.json
